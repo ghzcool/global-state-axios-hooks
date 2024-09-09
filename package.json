@@ -1,6 +1,6 @@
 {
   "name": "global-state-axios-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "`GlobalState` is a class for managing the global state of an application. `globalStateHooks` is a set of functions and React hooks that allow you to manage global state, handle promises, and make `axios` requests within React components.",
   "repository": "https://github.com/ghzcool/global-state-axios-hooks",
   "main": "./dist/index.js",

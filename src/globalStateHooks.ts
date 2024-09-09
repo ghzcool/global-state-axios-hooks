@@ -109,9 +109,9 @@ export function axiosResponseToGlobalState<T>(promise: Promise<AxiosResponse<T>>
   return promise.then(response => response?.data);
 }
 
-type RequestHooks<T, K> = [(args: K) => Promise<T>, () => boolean, () => T | undefined, () => Error | undefined, GlobalState<PromiseState<T>>];
+type RequestHooks<T, K> = [(args?: K) => Promise<T>, () => boolean, () => T | undefined, () => Error | undefined, GlobalState<PromiseState<T>>];
 
-export function getRequestHooks<T, K>(axiosCall: (args: K) => Promise<AxiosResponse<T>>): RequestHooks<T, K> {
+export function getRequestHooks<T, K>(axiosCall: (args?: K) => Promise<AxiosResponse<T>>): RequestHooks<T, K> {
   const responseGlobalState: GlobalState<PromiseState<T>> = new GlobalState(new PromiseState());
   const sendRequest = (args: K) => axiosResponseToGlobalState<T>(axiosCall(args), responseGlobalState);
   const useLoading = getPromiseStateLoadingHook(responseGlobalState);
@@ -123,7 +123,7 @@ export function getRequestHooks<T, K>(axiosCall: (args: K) => Promise<AxiosRespo
 
 export function getGlobalStateHookSetterGetter<T>(globalState: GlobalState<T>): [() => T | undefined, (value: T) => void, () => T | undefined] {
   const useValue = getGlobalStateHook<T>(globalState);
-  const setValue = (value: T) => {
+  const setValue = (value?: T) => {
     if (value !== globalState.getValue()) {
       globalState.next(value);
     }

@@ -25,7 +25,7 @@ export class GlobalState<T> {
     this._state = state;
   }
 
-  next(state: T) {
+  next(state?: T) {
     this._state = state;
     this._subscribers.forEach(subscriber => subscriber(this._state));
   }
