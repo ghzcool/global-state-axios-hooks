@@ -11,7 +11,7 @@
 #### Key Methods
 
 - **`constructor(state?: T)`**: Initializes the global state with an initial value `state`.
-- **`next(state: T): void`**: Sets a new state value and notifies all subscribers of the change.
+- **`next(state?: T): void`**: Sets a new state value and notifies all subscribers of the change.
 - **`subscribe(subscriber: GlobalStateSubscriber<T>): GlobalStateUnsubscribe`**: Adds a subscriber for state changes. Returns a function to unsubscribe.
 - **`getValue(): T | undefined`**: Returns the current state value.
 
@@ -27,8 +27,8 @@ These hooks allow you to use `GlobalState` in React components.
 - **`getPromiseStateErrorHook(globalState: GlobalState<PromiseState<any>>): () => Error | undefined`**: Returns a hook to get errors from `PromiseState`.
 - **`promiseToGlobalState<T>(promise: Promise<T>, globalState: GlobalState<PromiseState<T>>): Promise<T>`**: Handles a promise and stores its state in `GlobalState`.
 - **`axiosResponseToGlobalState<T>(promise: Promise<AxiosResponse<T>>, subject: GlobalState<PromiseState<T>>): Promise<T>`**: Handles an `axios` response and stores its state in `GlobalState`.
-- **`getRequestHooks<T, K>(axiosCall: (args: K) => Promise<AxiosResponse<T>>): RequestHooks<T, K>`**: Creates a set of hook functions for making `axios` requests and managing loading, data, and error states.
-- **`getGlobalStateHookSetterGetter<T>(globalState: GlobalState<T>): [() => T | undefined, (value: T) => void, () => T | undefined]`**: Creates a set of functions: hook, setter and getter for managing global state.
+- **`getRequestHooks<T, K>(axiosCall: (args?: K) => Promise<AxiosResponse<T>>): RequestHooks<T, K>`**: Creates a set of hook functions for making `axios` requests and managing loading, data, and error states.
+- **`getGlobalStateHookSetterGetter<T>(globalState: GlobalState<T>): [() => T | undefined, (value?: T) => void, () => T | undefined]`**: Creates a set of functions: hook, setter and getter for managing global state.
 
 ## Example Usage
 

@@ -121,7 +121,7 @@ export function getRequestHooks<T, K>(axiosCall: (args?: K) => Promise<AxiosResp
   return [sendRequest, useLoading, useData, useError, responseGlobalState];
 }
 
-export function getGlobalStateHookSetterGetter<T>(globalState: GlobalState<T>): [() => T | undefined, (value: T) => void, () => T | undefined] {
+export function getGlobalStateHookSetterGetter<T>(globalState: GlobalState<T>): [() => T | undefined, (value?: T) => void, () => T | undefined] {
   const useValue = getGlobalStateHook<T>(globalState);
   const setValue = (value?: T) => {
     if (value !== globalState.getValue()) {
